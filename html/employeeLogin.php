@@ -8,6 +8,8 @@
 
     $conn = new mysqli('localhost','root','','accounts');
 
+
+    //gets the input email and password from the inpunt forms
     $inputEmail = $_POST['email'];
     $inputPassword = $_POST['password'];
     
@@ -15,16 +17,18 @@
 
     $rows = mysqli_fetch_assoc($result);
 
-    $id = $rows["id"];
+
+    // grabs data from the table
+    $id = $rows["id"]; 
     $email = $rows["email"];
     $password = $rows["password"];
 
-    $_SESSION['ID'] = $id;
-    $_SESSION['newEmail'] = $inputEmail;
-    $_SESSION['newPass'] = $inputPassword;
+
+    
+    
     
 
-    if(isset($_SESSION['email'])){
+    if(isset($_SESSION['email'])){ //checks if the user is already logged in by checking if session(email) is set.
 
         echo"already logged in";
         echo"<script>location.href='welcome.php'</script>";
@@ -36,9 +40,9 @@
 
         if($inputEmail == $email && $inputPassword == $password){
 
-            $_SESSION['email'] = $inputEmail;
+            $_SESSION['email'] = $inputEmail; //puts the inputted email into a universal session that checks every page if it is logged in or not
 
-            echo"<script>location.href='employeeLogin.php'</script>";
+            echo"<script>location.href='employeeLogin.php'</script>"; //loads itself to check if user is logged in or not
 
         }
         else{
