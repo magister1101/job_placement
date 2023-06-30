@@ -9,6 +9,10 @@
 
     $conn = new mysqli('localhost','root','','accounts');
 
+
+    $inputFirstName = $_POST['firstName'];
+    $inputLastName = $_POST['lastName'];
+    $inputStudentNumber = $_POST['studentNumber'];
     $inputEmail = $_POST['email'];
     $inputPassword = $_POST['password'];
     
@@ -29,7 +33,7 @@
         echo"<script>location.href='employeeReg1.html'</script>";
     }
     else{ //inserts email and password to database
-        $ins = mysqli_query($conn, "INSERT INTO `employee` (`email`, `password`) VALUES ('$inputEmail','$inputPassword')");
+        $ins = mysqli_query($conn, "INSERT INTO `employee` (`email`, `password`, `firstName`, `lastName`, `studentNumber`) VALUES ('$inputEmail','$inputPassword','$inputFirstName','$inputLastName','$inputStudentNumber')");
         header("Location:employeeReg.html");
 
     }
