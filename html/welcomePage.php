@@ -5,7 +5,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/reg1.css">
+    <link rel="stylesheet" href="../css/welcomePage.css">
     
 
     <title>Document</title>
@@ -19,30 +19,15 @@
 
     <div class="body">
         <div class="inner-body">
+            <h1></h1>
+        </div>
+        <div class="inner-body">
             <div class="reg-box">
                 
 
 
                     <div id="login" style="display: block; margin-bottom: 5%;">
-
-                        <h1 style="margin-bottom: 5%;" >WELCOME</h1>
-
-                        
-                        <form action="employeeLogin.html" method="POST">
-
-                            <div style="text-align: center; margin-bottom: 2%;">
-                            
-                                <button type="submit" class="btn btn-warning" id="" style="margin-bottom: 5%;">Start</button>
-                                
-                            </div>
-
-                        </form>
-
-                        
-
-                        
-                   
-
+                        <h1>WELCOME</h1>
                     </div>
 
 

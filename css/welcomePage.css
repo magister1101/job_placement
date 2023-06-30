@@ -1,0 +1,19 @@
+.inner-body {
+    padding: 2%; 
+    margin: 2%; 
+    border: solid 1px black;
+    border-radius: 25px; 
+    background-color: #fbfff4;  
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.reg-box{
+    padding: 2%;
+    border: solid 1px black;
+    border-radius: 25px; 
+    background-color: #f4f9ff;
+    width:50%;
+}
+
