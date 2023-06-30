@@ -3,9 +3,8 @@
 <body>
     
 <?php
-    session_start();
 
-    $id = $email = $password = "";
+    session_start();
 
     $conn = new mysqli('localhost','root','','accounts');
 
@@ -28,38 +27,43 @@
     if(isset($_SESSION['email'])){
 
         echo"already logged in";
+        echo"<script>location.href='welcome.php'</script>";
+        
 
     }
 
     else{
 
-        if($inputEmail == $email && $inputPassword == password){
+        if($inputEmail == $email && $inputPassword == $password){
 
-            $_SESSION['una']
+            $_SESSION['email'] = $inputEmail;
+
+            echo"<script>location.href='employeeLogin.php'</script>";
 
         }
+        else{
 
+            echo "<script>alert('email or password incorrect')</script>";
+            echo "<script>location.href='employeeLogin.html'</script>";
+
+        }
     }
 
 
-    if($inputEmail == $email && $inputPassword == $password){
-
-
+    /*if($inputEmail == $email && $inputPassword == $password){
 
         $_SESSION['newEmail'] = $inputEmail;
         $_SESSION['newPass'] = $inputPassword;
         $_SESSION['id'] = $id;
-
-
         echo"Congrats";
-
     }
     else{
-        
-        header("Location:employeeLogin.html");
-        
-    }
+        header("Location:employeeLogin.html"); 
+    }*/
+
+
 ?>
+
 
 </body>
 </html>
