@@ -43,10 +43,8 @@
                     <li><a href="#">Companies</a></li>
                     <?php 
                     if(isset($_SESSION['email'])){ //checks if the user is already logged in by checking if session(email) is set.
-
                     ?>
                         <li><a href="logout.php">Log out</a></li>
-                        
                     <?php
                     }
                     else {
@@ -54,7 +52,7 @@
                         <li><a href="employeeLoginPage.php">Log In</a></li>
                     <?php
                     }
-                    ?>
+                        ?>
                     
                 </ul>
             </div>
