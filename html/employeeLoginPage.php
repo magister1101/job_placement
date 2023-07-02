@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/reg1.css">
+    
 
     <title>Document</title>
 </head>
@@ -19,35 +20,35 @@
     <div class="body">
         <div class="inner-body">
             <div class="reg-box">
-                <form action="employerLogin.php" method="POST">
+                <form action="employeeLogin.php" method="post">
 
 
                     <div id="login" style="display: block; margin-bottom: 5%;">
 
-                        <h1 style="margin-bottom: 5%;" >Employer Login</h1>
+                        <h1 style="margin-bottom: 5%;" >Applicant Login</h1>
 
-
+                        <form action="employeelogin.php" method="post">
 
                         <div style="text-align: justify; margin-bottom: 2%;">
                             
+                            
 
-                            <label for="" style="margin-left: 1%;">Email:</label>
-                            <input type="text" name="email" id="email" class="form-control" placeholder="Enter your Email" style="margin-bottom: 2%; margin: 1%; width: 98%;" required>
+                                <label for="" style="margin-left: 1%;">Email:</label>
+                                <input type="text" name="email" id="email" class="form-control" placeholder="Enter your Email" style="margin-bottom: 2%; margin: 1%; width: 98%;" required>
 
-                            <label for="" style="margin-left: 1%;">Password:</label>
-                            <input type="password" name="password" id="password" class="form-control" placeholder="Enter your Password" style="margin-bottom: 2%; margin: 1%; width: 98%;" required>
-                         
+                                <label for="" style="margin-left: 1%;">Password:</label>
+                                <input type="password" name="password" id="password" class="form-control" placeholder="Enter your Password" style="margin-bottom: 2%; margin: 1%; width: 98%;" required>
+                            
+                            
                             
                         </div>
 
                         <div class="innerfirstreg" style="text-align: justify; display: flex; flex-direction: row;">
                             
-                            
                             <div style="width: 50%; margin: 1%;">
-                                
                                 <button type="submit" class="btn btn-warning" id="" style="margin-bottom: 5%;">Login</button>
-                                <br><a href="employeeLogin.html" class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Applicant Login</a>
-                                <p>Don't have an account? <a href="employerReg.html" class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Register here</a></p>
+                                <br><a href="employerLoginPage.php" class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Employer Login</a>
+                                <p>Don't have an account? <a href="employeeReg1.html" class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Register here</a></p>
                             </div>
                             
                             <div style="width: 50%; margin: 1%; text-align: right;">
@@ -55,9 +56,12 @@
                                 
                             </div>
                         </div>
-                       
+                        
+                    </form>
 
                     </div>
+
+
 
                     
                 </form>

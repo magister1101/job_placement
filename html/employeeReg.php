@@ -35,7 +35,6 @@
     else{ //inserts email and password to database
         $ins = mysqli_query($conn, "INSERT INTO `employee` (`email`, `password`, `firstName`, `lastName`, `studentNumber`) VALUES ('$inputEmail','$inputPassword','$inputFirstName','$inputLastName','$inputStudentNumber')");
         header("Location:employeeregister.php?email=$inputEmail");
-
     }
 ?>
 

@@ -41,6 +41,7 @@
         if($inputEmail == $email && $inputPassword == $password){
 
             $_SESSION['email'] = $inputEmail; //puts the inputted email into a universal session that checks every page if it is logged in or not
+            $_SESSION['id'] = $id;
 
             echo"<script>location.href='employeeLogin.php'</script>"; //loads itself to check if user is logged in or not
 
@@ -48,7 +49,7 @@
         else{
 
             echo "<script>alert('email or password incorrect')</script>";
-            echo "<script>location.href='employeeLogin.html'</script>";
+            echo "<script>location.href='employeeLoginPage.php'</script>";
 
         }
     }

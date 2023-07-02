@@ -30,7 +30,7 @@
     }
     else{ //inserts email and password to database
         $ins = mysqli_query($conn, "INSERT INTO `employer` (`email`, `password`) VALUES ('$inputEmail','$inputPassword')");
-        header("Location:employerLogin.html");
+        header("Location:employerLoginPage.php");
 
     }
 ?>

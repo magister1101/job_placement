@@ -6,14 +6,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/reg1.css">
+    <link rel="stylesheet" href="../css/navbar.css">
     
 
     <title>Document</title>
 </head>
 <body>
 
-    <div class="nav-sm-12" style="padding: 5px; background-color: #044434; color: white;">
-        <h1>test landing Page</h1>
+    <div style="padding: 5px; background-color: #044434; color: white;">
+        <nav>
+            <a href="index.html"><img src="../img/cvsulogo.png"></a>
+            <div class="nav-links">
+                <ul>
+                    <li class="search-container">
+                    <form action="/search" method="get">
+                        <input type="text" name="query" placeholder="Search...">
+                        <button type="submit">Search</button>
+                    </form>
+                </li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="comprev.html">Companies</a></li>
+                    <li><a href="login.html">Log In</a></li>
+                </ul>
+            </div>
+        </nav>
     </div>
     
 
@@ -28,7 +44,7 @@
                         <h1 style="margin-bottom: 5%;" >WELCOME</h1>
 
                         
-                        <form action="employeeLogin.html" method="POST">
+                        <form action="employeeLoginPage.php" method="POST">
 
                             <div style="text-align: center; margin-bottom: 2%;">
                             

@@ -105,7 +105,7 @@ $env = $_GET['env'];
                         $conn = new mysqli('localhost','root','','accounts');
                         $update = "UPDATE employee SET campus='$university', stat='$status', course='$course', workExperience='$exp', workEnvironment='$env' WHERE email='$email' ";
                         $updrun = mysqli_query($conn, $update);
-                        header("Location:employeeLogin.html");
+                        header("Location:employeeLoginPage.php");
 
                     }
                     ?>
