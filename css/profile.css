@@ -1,0 +1,20 @@
+.information img, h1, h2,h3,h4{
+   padding: 0.5%;
+}
+.information .profile-picture img{
+    width: 180px;
+}
+
+.side-picture-info{
+    margin-left: 200px;
+}
+.edit-button{
+    float:right;
+}
+.edit-button button{
+    width: 150px;
+    height: 50px;
+}
+.move-right {
+    margin-left: 10%;
+}

@@ -3,10 +3,9 @@
 <body>
     
 <?php
-
     session_start();
 
-    $conn = new mysqli('localhost','root','','accounts');
+    include 'config.php';
 
 
     //gets the input email and password from the inpunt forms
@@ -21,11 +20,10 @@
     $email = $rows["email"];
     $password = $rows["password"];
 
-
     if(isset($_SESSION['email'])){ //checks if the user is already logged in by checking if session(email) is set.
 
         echo"already logged in";
-        echo"<script>location.href='welcome.php'</script>";
+        echo"<script>location.href='index.php'</script>";
 
     }
     else{

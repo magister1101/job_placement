@@ -26,7 +26,7 @@
 
     if(mysqli_num_rows($ee) > 0){ //checks if the email is already in our database (employee)
         echo"<script>alert('The email is already registered.')</script>";
-        echo"<script>location.href='employeeReg1.html'</script>";
+        echo"<script>location.href='employeeReg1.php'</script>";
     }
     else{ //inserts email and password to database
         $ins = mysqli_query($conn, "INSERT INTO `employer` (`email`, `password`) VALUES ('$inputEmail','$inputPassword')");

@@ -5,34 +5,40 @@
 <?php
     session_start();
 
-    $id = $email = $password = "";
+    include 'config.php';
 
-    $conn = new mysqli('localhost','root','','accounts');
-
+    //gets the input email and password from the inpunt forms
     $inputEmail = $_POST['email'];
     $inputPassword = $_POST['password'];
     
     $result = mysqli_query($conn, "SELECT * FROM `employer` WHERE `email` = '$inputEmail'");
-
     $rows = mysqli_fetch_assoc($result);
 
-    $id = $rows["id"];
+    //grabs the data from the table and stores them in a variable
+    $id = $rows["id"]; 
     $email = $rows["email"];
     $password = $rows["password"];
 
-    if($inputEmail == $email && $inputPassword == $password){
+    if(isset($_SESSION['email'])){ //checks if the user is already logged in by checking if session(email) is set.
 
-        $_SESSION['newEmail'] = $inputEmail;
-        $_SESSION['newPass'] = $inputPassword;
-
-
-        echo"Congrats";
+        echo"already logged in";
+        echo"<script>location.href='welcome.php'</script>";
 
     }
     else{
         
-        header("Location:employerLogin.html");
-        
+        if($inputEmail == $email && $inputPassword == $password){
+            $_SESSION['email'] = $inputEmail; //puts the inputted email into a universal session that checks every page if it is logged in or not
+            $_SESSION['id'] = $id;
+            echo"<script>location.href='employerLogin.php'</script>"; //loads itself to check if user is logged in or not
+
+        }
+        else{
+
+            echo "<script>alert('email or password incorrect')</script>";
+            echo "<script>location.href='employerLoginPage.php'</script>";
+
+        }
     }
 ?>
 

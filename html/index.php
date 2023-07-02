@@ -16,15 +16,36 @@
             <a href="index.php"><img src="../img/cvsulogo.png"></a>
             <div class="nav-links">
                 <ul>
-                    <li class="search-container">
-                    <form action="/search" method="get">
-                        <input type="text" name="query" placeholder="Search...">
-                        <button type="submit">Search</button>
-                    </form>
-                </li>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Companies</a></li>
-                    <li><a href="employeeLoginPage.php">Log In</a></li>
+                    <li><a href="index.php">Home</a></li>
+                    <?php 
+
+                    session_start();
+
+                    if(isset($_SESSION['email'])){ //checks if the user is already logged in by checking if session(email) is set.
+                    ?>
+                        <li><a href="profile.php">Profile</a></li>
+                    <?php
+                    }
+                    else {
+                    ?>
+                        <li><a href="employeeLoginPage.php">Profile</a></li>
+                    <?php
+                    }
+                    ?>
+                    <?php 
+
+                    if(isset($_SESSION['email'])){ //checks if the user is already logged in by checking if session(email) is set.
+                    ?>
+                        <li><a href="logout.php">Log out</a></li>
+                    <?php
+                    }
+                    else {
+                    ?>
+                        <li><a href="employeeLoginPage.php">Log In</a></li>
+                    <?php
+                    }
+                    ?>
+                    
                 </ul>
             </div>
         </nav>

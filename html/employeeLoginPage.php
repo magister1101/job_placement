@@ -6,14 +6,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/reg1.css">
+    <link rel="stylesheet" href="../css/navbar.css">
     
 
     <title>Document</title>
 </head>
 <body>
 
-    <div class="nav-sm-12" style="padding: 5px; background-color: #044434; color: white;">
-        <h1>test</h1>
+<div style="padding: 5px; background-color: #044434; color: white;">
+        <nav>
+            <a href="index.php"><img src="../img/cvsulogo.png"></a>
+            <div class="nav-links">
+                <ul>
+                    <li><a href="index.php">Home</a></li>
+                    <?php 
+
+                    session_start();
+
+                    if(isset($_SESSION['email'])){ //checks if the user is already logged in by checking if session(email) is set.
+                    ?>
+                        <li><a href="profile.php">Profile</a></li>
+                    <?php
+                    }
+                    else {
+                    ?>
+                        <li><a href="employeeLoginPage.php">Profile</a></li>
+                    <?php
+                    }
+                    ?>
+                    <?php 
+
+                    if(isset($_SESSION['email'])){ //checks if the user is already logged in by checking if session(email) is set.
+                    ?>
+                        <li><a href="logout.php">Log out</a></li>
+                    <?php
+                    }
+                    else {
+                    ?>
+                        <li><a href="employeeLoginPage.php">Log In</a></li>
+                    <?php
+                    }
+                    ?>
+                    
+                </ul>
+            </div>
+        </nav>
     </div>
     
 
@@ -48,7 +85,7 @@
                             <div style="width: 50%; margin: 1%;">
                                 <button type="submit" class="btn btn-warning" id="" style="margin-bottom: 5%;">Login</button>
                                 <br><a href="employerLoginPage.php" class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Employer Login</a>
-                                <p>Don't have an account? <a href="employeeReg1.html" class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Register here</a></p>
+                                <p>Don't have an account? <a href="employeeReg1.php" class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Register here</a></p>
                             </div>
                             
                             <div style="width: 50%; margin: 1%; text-align: right;">

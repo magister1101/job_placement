@@ -17,13 +17,51 @@ $env = $_GET['env'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/reg1.css">
     <link rel="stylesheet" href="modal.css">
+    <link rel="stylesheet" href="../css/navbar.css">
 
-    <title>Document</title>
+
+    <title>Job Placement</title>
 </head>
 <body>
 
-    <div class="nav-sm-12" style="padding: 5px; background-color: #044434; color: white;">
-        <h1>test</h1>
+    <div style="padding: 5px; background-color: #044434; color: white;">
+        <nav>
+            <a href="index.php"><img src="../img/cvsulogo.png"></a>
+            <div class="nav-links">
+                <ul>
+                    <li><a href="index.php">Home</a></li>
+                    <?php 
+
+                    session_start();
+
+                    if(isset($_SESSION['email'])){ //checks if the user is already logged in by checking if session(email) is set.
+                    ?>
+                        <li><a href="profile.php">Profile</a></li>
+                    <?php
+                    }
+                    else {
+                    ?>
+                        <li><a href="employeeLoginPage.php">Profile</a></li>
+                    <?php
+                    }
+                    ?>
+                    <?php 
+
+                    if(isset($_SESSION['email'])){ //checks if the user is already logged in by checking if session(email) is set.
+                    ?>
+                        <li><a href="logout.php">Log out</a></li>
+                    <?php
+                    }
+                    else {
+                    ?>
+                        <li><a href="employeeLoginPage.php">Log In</a></li>
+                    <?php
+                    }
+                    ?>
+                    
+                </ul>
+            </div>
+        </nav>
     </div>
     
 
@@ -35,9 +73,9 @@ $env = $_GET['env'];
                     <!--second register form-->
                     <div id="secondReg" style="display: block; margin-bottom: 5%;">
                         <form action="" method="GET">
-                            <h1 style="margin-bottom: 5%;" >University?</h1>
-                            <input type="text" name="university" id="" class="form-control" placeholder="Enter your Campus" style="margin-bottom: 2%;">
-                            <input type="hidden" name="email" value="<?php echo $email; ?>" id="" class="form-control" placeholder="Enter your Campus" style="margin-bottom: 2%;">
+                            <h1 style="margin-bottom: 5%;" >Enter CvSU Campus:</h1>
+                            <input type="text" name="university" id="" class="form-control"placeholder="Cavite State University - [campus]" style="margin-bottom: 2%;">
+                            <input type="hidden" name="email" value="<?php echo $email; ?>" id="" class="form-control"  style="margin-bottom: 2%;">
                             <button type="submit" class="btn btn-success">Next</button>    
                         </form>
                     </div>
@@ -92,8 +130,8 @@ $env = $_GET['env'];
 
                             <div style="display:flex; flex-direction: column;">
                                 <h1 style="margin-bottom: 5%;" >Preferred work environment?</h1>
-                                <a href="employeeregister.php?email=<?php echo $email?>&university=<?php echo $university; ?>&status=<?php echo $status; ?>&course=<?php echo $course?>&exp=<?php echo $exp ?>&env=yes" class="btn btn-success" style="margin-bottom: 2%;">Yes</a>
-                                <a href="employeeregister.php?email=<?php echo $email?>&university=<?php echo $university; ?>&status=<?php echo $status; ?>&course=<?php echo $course?>&exp=<?php echo $exp ?>&env=no" class="btn btn-success" style="margin-bottom: 2%;">No</a>
+                                <a href="employeeregister.php?email=<?php echo $email?>&university=<?php echo $university; ?>&status=<?php echo $status; ?>&course=<?php echo $course?>&exp=<?php echo $exp ?>&env=wfh" class="btn btn-success" style="margin-bottom: 2%;">Work From Home</a>
+                                <a href="employeeregister.php?email=<?php echo $email?>&university=<?php echo $university; ?>&status=<?php echo $status; ?>&course=<?php echo $course?>&exp=<?php echo $exp ?>&env=os" class="btn btn-success" style="margin-bottom: 2%;">On-Site</a>
                             </div>
                         </div>
                     <?php } ?>
