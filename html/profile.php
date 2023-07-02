@@ -1,6 +1,7 @@
 <?php
     session_start();
 
+    error_reporting(0);
     include 'config.php';
     
     $id = $_SESSION['id'];
@@ -21,22 +22,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/basic.css">
+    <link rel="stylesheet" href="../css/navbar.css">
     <title>Profile</title>
 
 </head>
 <body>
 
-    <div class="nav-sm-12" style="padding: 5px; background-color: #044434; color: white;">
-        <h1>NAVBAR</h1>
+    <div style="padding: 5px; background-color: #044434; color: white;">
+        <nav>
+            <a href="index.php"><img src="../img/cvsulogo.png"></a>
+            <div class="nav-links">
+                <ul>
+                    <li class="search-container">
+                    <form action="/search" method="get">
+                        <input type="text" name="query" placeholder="Search...">
+                        <button type="submit">Search</button>
+                    </form>
+                </li>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Companies</a></li>
+                    <?php 
+                    if(isset($_SESSION['email'])){ //checks if the user is already logged in by checking if session(email) is set.
+
+                    ?>
+                        <li><a href="logout.php">Log out</a></li>
+                        
+                    <?php
+                    }
+                    else {
+                    ?>
+                        <li><a href="employeeLoginPage.php">Log In</a></li>
+                    <?php
+                    }
+                    ?>
+                    
+                </ul>
+            </div>
+        </nav>
     </div>
     
 
     <div class="basic-inner-box">
-        <?php
         
-            echo $firstName;
-
-        ?>
+        <h1>
+            <?php
+                echo $firstName;
+            ?>
+        </h1>
+        
     </div>
 
     <footer style="background-color: #044434;">
