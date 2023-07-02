@@ -39,8 +39,6 @@
         ?>
     </div>
 
-
-
     <footer style="background-color: #044434;">
 
     </footer>
