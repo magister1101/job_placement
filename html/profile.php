@@ -1,8 +1,8 @@
 <?php
     session_start();
 
-    $conn = new mysqli('localhost','root','','accounts');
-
+    include 'config.php';
+    
     $id = $_SESSION['id'];
 
     $result = mysqli_query($conn, "SELECT * FROM `employee` WHERE `id` = '$id'");
@@ -32,7 +32,11 @@
     
 
     <div class="basic-inner-box">
+        <?php
         
+            echo $firstName;
+
+        ?>
     </div>
 
 
