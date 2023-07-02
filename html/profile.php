@@ -17,6 +17,8 @@
     $stat = $rows['stat'];
     $campus = $rows['campus'];
     $env = $rows['workEnvironment'];
+    $address = $rows['address'];
+    $contactNumber = $rows['contactNumber'];
 ?>
 
 <!DOCTYPE html>
@@ -115,8 +117,8 @@
             <h1>Additional Info:</h1>
 
             <div class="move-right">
-                <h3>Address:</h3>
-                <h3>Contact No.: </h3>
+                <h3>Address: <?php echo $address ?></h3>
+                <h3>Contact No.: <?php echo $contactNumber ?></h3>
                 <h3>Preferred work evironment:
                     <?php
                     if ($env == "wfh"){
