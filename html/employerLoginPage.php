@@ -12,7 +12,7 @@
 </head>
 <body>
 
-    <div style="padding: 5px; background-color: #044434; color: white;">
+<div style="padding: 5px; background-color: #044434; color: white;">
         <nav>
             <a href="index.php"><img src="../img/cvsulogo.png"></a>
             <div class="nav-links">
@@ -20,12 +20,29 @@
                     <li><a href="index.php">Home</a></li>
                     <?php 
 
+                    error_reporting(0);
                     session_start();
+                    include 'config.php';
+                    
+
+                    $inputEmail = $_SESSION['email'];
+                    
+                    $result = mysqli_query($conn, "SELECT * FROM `employer` WHERE `email` = '$inputEmail'"); //gets the info that matches the email from the database
+                    $rows = mysqli_fetch_assoc($result); //fetches the result and stores them
+                    
+                    $accountType = $rows['accountType'];
 
                     if(isset($_SESSION['email'])){ //checks if the user is already logged in by checking if session(email) is set.
+                        
+
+                            if($accountType == 'employer'){
+                                ?> <li><a href="employerProfile.php">Profile</a></li> <?php
+                            }else {
                     ?>
-                        <li><a href="profile.php">Profile</a></li>
+                            <li><a href="profile.php">Profile</a></li>
+                            
                     <?php
+                            }   
                     }
                     else {
                     ?>

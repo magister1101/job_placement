@@ -5,9 +5,7 @@
 <?php
     session_start();
 
-    $id = $email = $password = "";
-
-    $conn = new mysqli('localhost','root','','accounts');
+    include 'config.php';
 
 
     $inputFirstName = $_POST['firstName'];
@@ -17,7 +15,6 @@
     $inputPassword = $_POST['password'];
     
     $result = mysqli_query($conn, "SELECT * FROM `employee` where 1");
-    
     $rows = mysqli_fetch_assoc($result);
 
     $id = $rows["id"];

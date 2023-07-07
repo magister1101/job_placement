@@ -1,0 +1,7 @@
+.basic-inner-box{
+    padding: 2%; 
+    margin: 2%;
+    border: solid 1px black;
+    border-radius: 25px; 
+    background-color: #fbfff4;
+}

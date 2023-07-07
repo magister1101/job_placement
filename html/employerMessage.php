@@ -1,6 +1,11 @@
 <?php
     error_reporting(0);
+    session_start();
+
+    include 'config.php'
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,11 +15,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/reg1.css">
     <link rel="stylesheet" href="../css/navbar.css">
-    <title>INDEX</title>
+    <link rel="stylesheet" href="../css/employerMessage.css">
+    <title>Job Placement</title>
 </head>
 <body>
 
-    <div style="padding: 5px; background-color: #044434; color: white;">
+<div style="padding: 5px; background-color: #044434; color: white;">
         <nav>
             <a href="index.php"><img src="../img/cvsulogo.png"></a>
             <div class="nav-links">
@@ -72,18 +78,53 @@
     
 
     <div class="body">
-        <div class="inner-body">
-            <div class="reg-box">
+        <div class="inner-body" style="height:50vh">
+            <div class="reg-box" style="text-align:left;">
             
-                    <div style="display: block; margin-bottom: 5%;">
-                        <h1 style="margin-bottom: 5%;" >WELCOME</h1>
-                        <form action="employeeLoginPage.php" method="POST">
-                            <div style="text-align: center; margin-bottom: 2%;">
-                                <button type="submit" class="btn btn-warning" id="" style="margin-bottom: 5%;">Start</button>
-                            </div>
-                        </form>
-                    </div>
+                    <form action="sendMessage.php" method="post">
 
+                        <label for="email"">Email:</label>
+                        <input type="text" name="destinationEmail" id="email" class="form-control" placeholder="Enter email" style="margin-bottom: 2%; width: 50%;" required>
+
+                        <label for="content">Content:</label>
+                        <textarea name="content" id="" cols="30" rows="5" class="form-control" style="margin-bottom: 2%;" placeholder="Enter content"></textarea>
+
+                        <button type="submit" class="btn btn-warning">Send</button>
+
+                    </form>
+
+            </div>
+        </div>
+
+        <div class="inner-body">
+            <div class="reg-box message-box" style="text-align:left;">
+ 
+                <h1>Messages</h1>
+
+                <?php
+                    if(is_array($fetchData)){      
+                    $sn=1;
+                    foreach($fetchData as $data){
+                    ?>
+                    <tr>
+                    <td><?php echo $sn; ?></td>
+                    <td><?php echo $data['fullName']??''; ?></td>
+                    <td><?php echo $data['gender']??''; ?></td>
+                    <td><?php echo $data['email']??''; ?></td>
+                    <td><?php echo $data['mobile']??''; ?></td>
+                    <td><?php echo $data['address']??''; ?></td>
+                    <td><?php echo $data['city']??''; ?></td>
+                    <td><?php echo $data['state']??''; ?></td>  
+                    </tr>
+                    <?php
+                    $sn++;}}else{ ?>
+                    <tr>
+                        <td colspan="8">
+                    <?php echo $fetchData; ?>
+                    </td>
+                    <tr>
+                    <?php
+                    }?>
             </div>
         </div>
     </div>

@@ -10,13 +10,18 @@
     $conn = new mysqli('localhost','root','','accounts');
 
     $inputEmail = $_POST['email'];
+    $inputContactPersonName = $_POST['contactPersonName'];
+    $inputBusinessName = $_POST['businessName'];
     $inputPassword = $_POST['password'];
+    $accountType = 'employer';
     
     $result = mysqli_query($conn, "SELECT * FROM `employer` where 1");
 
     $rows = mysqli_fetch_assoc($result);
 
     $id = $rows["id"];
+    $contactPersonName = $rows["contactPersonName"];
+    $businessName = $rows["businessName"];
     $email = $rows["email"];
     $password = $rows["password"];
 
@@ -29,7 +34,7 @@
         echo"<script>location.href='employeeReg1.php'</script>";
     }
     else{ //inserts email and password to database
-        $ins = mysqli_query($conn, "INSERT INTO `employer` (`email`, `password`) VALUES ('$inputEmail','$inputPassword')");
+        $ins = mysqli_query($conn, "INSERT INTO `employer`(`contactPersonName`, `businessName`, `email`, `password`, `accountType`) VALUES ('$inputContactPersonName','$inputBusinessName','$inputEmail','$inputPassword','employer')");
         header("Location:employerLoginPage.php");
 
     }
