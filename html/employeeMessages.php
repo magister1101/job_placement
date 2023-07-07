@@ -6,12 +6,10 @@
     
     $id = $_SESSION['id'];
 
-    $result = mysqli_query($conn, "SELECT * FROM `employer` WHERE `id` = '$id'");
+    $result = mysqli_query($conn, "SELECT * FROM `employee` WHERE `id` = '$id'");
     $rows = mysqli_fetch_assoc($result);
 
-    $businessName = $rows['businessName'];
-    $contactPersonName = $rows['contactPersonName'];
-    $businessEmail = $rows['email'];
+    $employeeId = $rows['id'];
 
 ?>
 
@@ -24,10 +22,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/new-basic.css">
-    <link rel="stylesheet" href="../css/navbar.css">
-    <link rel="stylesheet" href="../css/side-navbar.css">
-    <link rel="stylesheet" href="../css/profile.css">
-    <link rel="stylesheet" href="../css/jobPosting.css">
+    <link rel="stylesheet" href="../css/navbar-messages.css">
 
     <title>Profile</title>
 
@@ -89,57 +84,65 @@
             </div>
         </nav>
     </div>
-
-    <div class="side-navbar">
-        <ul>
-            <li><a href="employerProfile.php">Profile</a></li>
-            <li><a class="active" href="jobPosting.php">Job Posting</a></li>
-            <li><a href="applicants.php">Applicants</a></li>
-            <li><a href="messages.php">Messages</a></li>
-        </ul>
     </div>
+
+    <?php
+
+        $contentQuery = "SELECT * FROM `message`";
+        $cqResult = mysqli_query($conn,$contentQuery);      
     
-
-    <div class="basic-inner-box" style="" >
-
-        <div class="information">
-
-        <form action="jobPosting.php" method="post">
-
-            <label for="name">Job Name:</label>
-            <input type="text" name="jobName" class="form-control" placeholder="Enter job name" style="margin-bottom: 2%; width: 50%;" required>
-            <label for="name">Salary:</label>
-            <input type="text" name="salary" class="form-control" placeholder="Enter salary range [10,000 - 12,000]" style="margin-bottom: 2%; width: 50%;" required>
-
-            <label for="name">Category:</label> <br>
-
-            <input type="radio" name="category" value="Sales" >
-            <label for="name">Sales</label><br>
-            <input type="radio" name="category" value="Technician">
-            <label for="name">Technician</label><br>
-            <input type="radio" name="category" value="Customer-Service">
-            <label for="name">Customer Service</label><br>
-            <input type="radio" name="category" value="Management">
-            <label for="name">Management</label><br>
-            <input type="radio" name="category" value="Industries">
-            <label for="name">Industries</label><br>
-            
-            <br>
-
-            <label for="description">Description:</label>
-            <textarea name="jobDescription" id="" cols="20" rows="3" class="form-control" style="margin-bottom: 2%;" placeholder="Enter job description"></textarea>
-
-            <button type="submit" name="submit" class="btn btn-warning">Post Job</button>
-
-        </form>
-         
-        </div>
-        
-    </div>
+    ?>
 
     <div class="basic-inner-box jobs">
-        <h1>JOBS</h1>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="card-mt-5">
+                        <div class="card-header">
+                            <h2 class="display-6 text-center">MESSAGES</h2>
+                        </div>
+                         <div class="card-body">
+                            <table class="table table-bordered text-center">
+                                <tr>
+                                    <td class="text-white bg-dark">Message ID</td>
+                                    <td class="text-white bg-dark">Sender Email</td> <!--employer email-->
+                                    <td class="text-white bg-dark">Content</td>
+                                </tr>
+                                <tr>
+                                    <?php
+                                        while($cqRow = mysqli_fetch_assoc($cqResult)){
+                                    ?>
+                                            <?php
+                                                if($employeeId == $cqRow['employeeId']){
+                                                    
+                                                    $employerId = $cqRow['employerId'];
+
+                                                    $idToEmail = mysqli_query($conn, "SELECT * FROM `employer` WHERE `id` = '$employerId'");
+                                                    $idToEmailRows = mysqli_fetch_assoc($idToEmail);
+
+                                                    $idToEmail2 = mysqli_query($conn, "SELECT * FROM `employee` WHERE `id` = '$employeeId'");
+                                                    $idToEmailRows2 = mysqli_fetch_assoc($idToEmail2);
+
+                                                    
+                                            ?>
+                                        <td><?php echo $cqRow['id']?></td>
+                                        <td><?php echo $idToEmailRows['email']?></td>
+                                        <td><?php echo $cqRow['content']?></td>
+                                            
+                                </tr>
+                                    <?php
+                                                }
+                                        }
+                                    ?>
+                                
+                            </table>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
 
 
     <footer style="background-color: #044434;">

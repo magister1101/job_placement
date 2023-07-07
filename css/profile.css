@@ -11,10 +11,16 @@
 .edit-button{
     float:right;
 }
-.edit-button button{
+.edit-button a{
+    display: flex;
+    flex-direction: column;
     width: 150px;
     height: 50px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 }
 .move-right {
     margin-left: 10%;
 }
+

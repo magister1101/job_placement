@@ -8,7 +8,9 @@
 
     $result = mysqli_query($conn, "SELECT * FROM `employee` WHERE `id` = '$id'");
     $rows = mysqli_fetch_assoc($result);
+    
 
+    $resume = $rows['resume'];
     $firstName = $rows['firstName'];
     $lastName = $rows['lastName'];
     $course = $rows['course'];
@@ -29,11 +31,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/basic.css">
+    <link rel="stylesheet" href="../css/new-basic.css">
     <link rel="stylesheet" href="../css/navbar.css">
 
     <link rel="stylesheet" href="../css/profile.css">
     <title>Profile</title>
+
+    
+
+    
 
 </head>
 <body>
@@ -97,14 +103,83 @@
     <div class="basic-inner-box" style="background-image:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(../img/profbg.png); color: white" >
         
         <div class="edit-button">
-            <button type="button" class="btn btn-warning">EDIT</button>
+            <a class="btn btn-info" href="employeeMessages.php">MESSAGES</a>
         </div>
     
     
         <div class="information">
 
+        <?php
+                    
+                    if(isset($_POST['submit']) && isset($_FILES['img'])){
+
+                        $img_name = $_FILES['img']['name'];
+                        $img_size = $_FILES['img']['size'];
+                        $tmp_name = $_FILES['img']['tmp_name'];
+                        $error = $_FILES['img']['error'];
+
+                        if($error == 0){
+                            $img_ext = pathinfo($img_name, PATHINFO_EXTENSION);
+                            $img_ext_lc = strtolower($img_ext);
+                            $allowed_ext = array("jpg", "jpeg", "png");
+
+                            if(in_array($img_ext_lc, $allowed_ext)){
+                                $new_img_name = uniqid("IMG-", true).'.'.$img_ext_lc;
+                                $img_up_path = '../uploads/'.$new_img_name;
+                                move_uploaded_file($tmp_name, $img_up_path);
+            
+                                $seshId = $_SESSION['id'];
+                                $ins = "UPDATE `employee` SET `img`='$new_img_name' WHERE `id` = '$seshId'";
+                                mysqli_query($conn, $ins);
+            
+                                $sid = "SELECT * from employee WHERE img = '$new_img_name'";
+                                $sidd = mysqli_query($conn, $sid);
+                                $rows = mysqli_fetch_assoc($sidd);
+            
+                                $id = $rows["id"];
+            
+                                $imgsearch = "SELECT * FROM employee WHERE id = '$id'";
+                                $res = mysqli_query($conn, $imgsearch);
+            
+                                $img_upload = mysqli_fetch_assoc($res);
+                                    ?><div class="album">
+                                            <img src= "../uploads/<?=$img_upload['img']?>">
+                                    </div>
+                                <?php
+                            }
+                            else{
+                                echo "You can`t upload this file type.";
+                            }
+
+                        }
+
+                       
+                    }
+                ?>
+
             <div class="profile-picture" style="float:left;">
-                <img src="../img/default_image.jpg"  alt="">
+
+            <?php
+                $imgsearch1 = "SELECT * FROM employee WHERE id = '$id'";
+                $res1 = mysqli_query($conn, $imgsearch1);
+                $img_upload1 = mysqli_fetch_assoc($res1);
+
+                $imageChecker = $img_upload1['img'];
+                if($imageChecker != ""){
+                ?>
+
+                    <img src="../uploads/<?=$img_upload1['img']?>"  alt="">
+
+                <?php
+                }
+                else{
+                ?>
+                    <img src="../img/default_image.jpg" alt="">
+                <?php
+                }
+                ?>
+                
+
             </div>
         
             <div class="side-picture-info">
@@ -118,6 +193,14 @@
                     }                 
                     ?></h3>
                 <h4><?php echo $email ?> | <?php echo $studentNumber ?> | <?php echo $stat ?></h4>
+                
+                <form action="#" method="post" enctype="multipart/form-data">
+                    <div style="">
+                        <input type="file" name="img" class="form-control" style="width:6.7%; float:left;margin-right:5px">
+                        <input type="submit" value="Upload" name="submit" class="form-control" style="width:7%;">
+                    </div>
+                </form>
+                
             </div>
             
             <hr>
@@ -145,11 +228,30 @@
                     }                 
                     ?>
                 </h3>
+                <br>
+                <div style="color:white;">
+
+                
+                </div>
+
+                
+                <h3 for="">Resume:</h3>
+                <form action="resumeUpload.php" method="post" enctype="multipart/form-data">
+                    <div style="">
+                        <input type="file" name="resume" class="form-control" style="width:6.7%;margin-right:5px">
+                        <input type="submit" value="Upload" name="submit" class="form-control" style="width:6.7%;">
+                    </div>
+                </form>
             </div>
-         
+
+           
+
         </div>
         
     </div>
+            <?php
+                echo $resname;
+            ?>
 
 
     <footer style="background-color: #044434;">
