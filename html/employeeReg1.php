@@ -98,6 +98,9 @@
 
                             <label for="" style="margin-left: 1%;">Student Number:</label>
                             <input type="text" name="studentNumber" id="studentNumber" class="form-control" placeholder="Enter your Student Number" style="margin-bottom: 2%; margin: 1%; width: 98%;" required>
+                            
+                            <label for="" style="margin-left: 1%;">Contact Number:</label>
+                            <input type="text" name="contactNumber" id="contactNumber" class="form-control" placeholder="Enter your Contact Number" style="margin-bottom: 2%; margin: 1%; width: 98%;" required>
 
                             <label for="" style="margin-left: 1%;">Email:</label>
                             <input type="text" name="email" id="email" class="form-control" placeholder="Enter your Email" style="margin-bottom: 2%; margin: 1%; width: 98%;" required>

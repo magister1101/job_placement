@@ -106,19 +106,101 @@
     
     
         <div class="information">
+            <?php
+                    
+                    if(isset($_POST['submit']) && isset($_FILES['img'])){
+
+                        $img_name = $_FILES['img']['name'];
+                        $img_size = $_FILES['img']['size'];
+                        $tmp_name = $_FILES['img']['tmp_name'];
+                        $error = $_FILES['img']['error'];
+
+                        if($error == 0){
+                            $img_ext = pathinfo($img_name, PATHINFO_EXTENSION);
+                            $img_ext_lc = strtolower($img_ext);
+                            $allowed_ext = array("jpg", "jpeg", "png");
+
+                            if(in_array($img_ext_lc, $allowed_ext)){
+                                $new_img_name = uniqid("IMG-", true).'.'.$img_ext_lc;
+                                $img_up_path = '../uploads/'.$new_img_name;
+                                move_uploaded_file($tmp_name, $img_up_path);
+            
+                                $seshId = $_SESSION['id'];
+                                $ins = "UPDATE `employer` SET `img`='$new_img_name' WHERE `id` = '$seshId'";
+                                mysqli_query($conn, $ins);
+            
+                                $sid = "SELECT * from employer WHERE img = '$new_img_name'";
+                                $sidd = mysqli_query($conn, $sid);
+                                $rows = mysqli_fetch_assoc($sidd);
+            
+                                $id = $rows["id"];
+            
+                                $imgsearch = "SELECT * FROM employer WHERE id = '$id'";
+                                $res = mysqli_query($conn, $imgsearch);
+            
+                                $img_upload = mysqli_fetch_assoc($res);
+                                    ?><div class="album">
+                                            <!--<img src= "../uploads/<?=$img_upload['img']?>">-->
+                                    </div>
+                                <?php
+                            }
+                            else{
+                                echo "You can`t upload this file type.";
+                            }
+
+                        }
+
+                       
+                    }
+                ?>
 
             <div class="profile-picture" style="float:left;">
-                <img src="../img/default_image.jpg"  alt="">
+
+            <?php
+                $imgsearch1 = "SELECT * FROM employer WHERE id = '$id'";
+                $res1 = mysqli_query($conn, $imgsearch1);
+                $img_upload1 = mysqli_fetch_assoc($res1);
+
+                $imageChecker = $img_upload1['img'];
+                if($imageChecker != ""){
+                ?>
+
+                    <img src="../uploads/<?=$img_upload1['img']?>"  alt="">
+                    <form action="#" method="post" enctype="multipart/form-data">
+                        <div style="">
+                            <input type="file" name="img" class="btn btn-success" style="width:56%" > <br>
+                            <input type="submit" value="Upload" name="submit" class="btn btn-success" style="width:56%">
+                        </div>
+                    </form>
+                    
+                    
+
+                <?php
+                }
+                else{
+                ?>
+                    <img src="../img/default_image.jpg" alt="">
+                    <form action="#" method="post" enctype="multipart/form-data">
+                        <div style="">
+                            <input type="file" name="img" class="btn btn-success" style="width:56%" > <br>
+                            <input type="submit" value="Upload" name="submit" class="btn btn-success" style="width:56%">
+                        </div>
+                    </form>
+                <?php
+                }
+                ?>
+                
+
             </div>
         
             <div class="side-picture-info">
-                <h1>Business Name: <?php echo $businessName ?></h1>
+                <h1 class="text-uppercase">Business Name: <?php echo $businessName ?></h1>
             
             <hr>
 
             <h1>Contact Person:</h1>
             <div class="move-right">
-                <h3><?php echo $contactPersonName ?></h3>
+                <h3 class="text-uppercase"><?php echo $contactPersonName ?></h3>
             </div>
             
             <hr>

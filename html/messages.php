@@ -25,7 +25,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/new-basic.css">
-    <link rel="stylesheet" href="../css/navbar-messages.css">
+    <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/side-navbar.css">
     <link rel="stylesheet" href="../css/jobPosting.css">
 
@@ -105,6 +105,9 @@
         <div class="information">
 
         <form action="sendMessage.php" method="post">
+                        <div class="card-header">
+                            <h2 class="display-6 text-center">SEND MESSAGE</h2>
+                        </div>
 
                         <label for="email"">Email:</label>
                         <input type="text" name="destinationEmail" id="email" class="form-control" placeholder="Enter email" style="margin-bottom: 2%; width: 50%;" required>
@@ -122,7 +125,7 @@
 
     <?php
 
-        $contentQuery = "SELECT * FROM `message`";
+        $contentQuery = "SELECT * FROM `message` ORDER BY `id` desc";
         $cqResult = mysqli_query($conn,$contentQuery);      
         
     
@@ -139,10 +142,10 @@
                          <div class="card-body">
                             <table class="table table-bordered text-center">
                                 <tr>
-                                    <td class="text-white bg-dark">Message ID</td>
-                                    <td class="text-white bg-dark">Sender Email</td> <!--employer email-->
-                                    <td class="text-white bg-dark">Reveiver Email</td> <!--employee email-->
-                                    <td class="text-white bg-dark">Content</td>
+                                    <td class="text-light bg-success text-uppercase" style="width:10%">Date Sent</td>
+                                    <td class="text-light bg-success text-uppercase">Sender Email</td> <!--employer email-->
+                                    <td class="text-light bg-success text-uppercase">Reveiver Email</td> <!--employee email-->
+                                    <td class="text-light bg-success text-uppercase">Content</td>
                                 </tr>
                                 <tr>
                                     <?php
@@ -161,7 +164,7 @@
 
                                                     
                                             ?>
-                                        <td><?php echo $cqRow['id']?></td>
+                                        <td><?php echo $cqRow['dateCreated']?></td>
                                         <td><?php echo $idToEmailRows['email']?></td>
                                         <td><?php echo $idToEmailRows2['email']?></td>
                                         <td><?php echo $cqRow['content']?></td>

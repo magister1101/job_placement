@@ -81,8 +81,8 @@
     <div class="side-navbar">
         <ul>
             <li><a href="employerProfile.php">Profile</a></li>
-            <li><a class="active" href="jobPosting.php">Job Posting</a></li>
-            <li><a href="applicants.php">Applicants</a></li>
+            <li><a href="jobPosting.php">Job Posting</a></li>
+            <li><a class="active" href="applicants.php">Applicants</a></li>
             <li><a href="messages.php">Messages</a></li>
         </ul>
     </div>
@@ -91,7 +91,7 @@
     
     <?php
         $id = $_SESSION['id'];
-        $AppQuery = "SELECT * FROM `application` WHERE `employerId` = '$id'";
+        $AppQuery = "SELECT * FROM `application` WHERE `employerId` = '$id' ORDER BY `id` desc";
         $AppResult = mysqli_query($conn, $AppQuery);    
     
     ?>
@@ -102,26 +102,22 @@
                 <div class="col">
                     <div class="card-mt-5">
                         <div class="card-header">
-                            <h2 class="display-6 text-center">JOB POSTED</h2>
+                            <h2 class="display-6 text-center">APPLICANTS</h2>
                         </div>
                          <div class="card-body">
                             <table class="table table-bordered text-center">
                                 <tr>
-                                    <td class="text-white bg-dark">Applicant Name</td>
-                                    <td class="text-white bg-dark">Email</td>
-                                    <td class="text-white bg-dark">Date of Application</td>
-                                    <td class="text-white bg-dark">Job Applied for</td>
-                                    <td class="text-white bg-dark">Resume</td>
+                                    <td class="text-light bg-success text-uppercase">Applicant Name</td>
+                                    <td class="text-light bg-success text-uppercase">Email</td>
+                                    <td class="text-light bg-success text-uppercase">Date of Application</td>
+                                    <td class="text-light bg-success text-uppercase">Job Applied for</td>
+                                    <td class="text-light bg-success text-uppercase">Resume</td>
                                     
                                 <tr>
                                     <?php
                                         while($appRow = mysqli_fetch_assoc($AppResult)){
                                     ?>
-                                            <?php
                                             
-                                                    
-                                                    
-                                            ?>
                                                         <td class="text-uppercase"><?php echo $appRow['nameOfApplicant']?></td>
                                                         <td><?php echo $appRow['emailOfApplicant']?></td>
                                                         <td><?php echo $appRow['dateOfApplication']?></td>

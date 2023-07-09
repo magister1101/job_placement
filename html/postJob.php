@@ -18,6 +18,7 @@
     $query = "INSERT INTO `job`(`category`, `employerId`, `JobName`, `salary`, `JobDescription`) VALUES ('$inputCategory' ,'$employerId', '$inputJobName', '$inputSalary', '$inputJobDescription')";
     $insertJob = mysqli_query($conn, $query);
 
+    header('location:jobPosting.php');
 
 
 

@@ -33,7 +33,8 @@
     $Insquery = "INSERT INTO `application`(`employeeId`, `employerId`, `resume`, `nameOfApplicant`, `emailOfApplicant`, `dateOfApplication`, `jobName`) VALUES ('$applicantId','$employerId','$resume','$fullName','$applicantEmail','$dateOfApplication','$jobName')";
     $ApplicationQuery = mysqli_query($conn, $Insquery);
 
-    header('location:index.php');
+    echo "<script>alert('Application sent')</script>";
+    echo "<script>location.href='index.php'</script>";
 
     
 

@@ -88,7 +88,7 @@
 
     <?php
 
-        $contentQuery = "SELECT * FROM `message`";
+        $contentQuery = "SELECT * FROM `message` ORDER BY `id` desc";
         $cqResult = mysqli_query($conn,$contentQuery);      
     
     ?>
@@ -104,9 +104,9 @@
                          <div class="card-body">
                             <table class="table table-bordered text-center">
                                 <tr>
-                                    <td class="text-white bg-dark">Message ID</td>
-                                    <td class="text-white bg-dark">Sender Email</td> <!--employer email-->
-                                    <td class="text-white bg-dark">Content</td>
+                                    <td class="text-light bg-success text-uppercase" style="width:10%">Date Recieved</td>
+                                    <td class="text-light bg-success text-uppercase">Sender Email</td> <!--employer email-->
+                                    <td class="text-light bg-success text-uppercase">Content</td>
                                 </tr>
                                 <tr>
                                     <?php
@@ -125,7 +125,7 @@
 
                                                     
                                             ?>
-                                        <td><?php echo $cqRow['id']?></td>
+                                        <td><?php echo $cqRow['dateCreated']?></td>
                                         <td><?php echo $idToEmailRows['email']?></td>
                                         <td><?php echo $cqRow['content']?></td>
                                             

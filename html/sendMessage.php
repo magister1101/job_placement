@@ -21,12 +21,13 @@
     
     $employeeId = $rowsEmployee['id'];
     $employerId = $rowsEmployer['id'];
+    $dateOfCreation = date("Y-m-d");
 
     echo $employeeId;
     echo $employerId;
     echo $content;
 
-    $ins = mysqli_query($conn, "INSERT INTO `message`(`employeeId`, `employerId`, `content`) VALUES ($employeeId ,$employerId ,'$content')");
+    $ins = mysqli_query($conn, "INSERT INTO `message`(`employeeId`, `employerId`, `content`, `dateCreated`) VALUES ($employeeId ,$employerId ,'$content', '$dateOfCreation')");
 
     header("Location:messages.php")
 

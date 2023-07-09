@@ -157,10 +157,12 @@
                          <div class="card-body">
                             <table class="table table-bordered text-center">
                                 <tr>
-                                    <td class="text-white bg-dark">Job Name</td>
-                                    <td class="text-white bg-dark">Salary</td>
-                                    <td class="text-white bg-dark">Category</td>
-                                    <td class="text-white bg-dark">Description</td>
+                                    <td class="text-light bg-success text-uppercase">Job Name</td>
+                                    <td class="text-light bg-success text-uppercase">Salary</td>
+                                    <td class="text-light bg-success text-uppercase">Category</td>
+                                    <td class="text-light bg-success text-uppercase">Description</td>
+                                    <td class="text-light bg-success text-uppercase">Delete</td>
+                                    
                                     
                                 <tr>
                                     <?php
@@ -175,6 +177,15 @@
                                                         <td><?php echo $jobRow['salary']?></td>
                                                         <td><?php echo $jobRow['category']?></td>
                                                         <td><?php echo $jobRow['JobDescription']?></td>
+                                                        
+                                                        <td>
+                                                            <form action="deleteJob.php" method="POST">
+                                                                <input type="text" name="jobId" value="<?php echo $jobRow['id'];?>" style="display:none;">
+                                                                <input type="submit" value="Delete" name="delete" class="btn btn-danger">
+                                                            </form>
+                                                        </td>
+                                                        
+                                                        
                                                             
                                 </tr>
                                     <?php
@@ -189,6 +200,8 @@
             </div>
         </div>
     </div>
+
+                                                            
 
 
     <footer style="background-color: #044434;">

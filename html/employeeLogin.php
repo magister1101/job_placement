@@ -22,7 +22,6 @@
 
     if(isset($_SESSION['email'])){ //checks if the user is already logged in by checking if session(email) is set.
 
-        echo"already logged in";
         echo"<script>location.href='index.php'</script>";
 
     }

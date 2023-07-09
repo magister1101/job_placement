@@ -16,6 +16,7 @@
     $course = $rows['course'];
     $email = $rows['email'];
     $studentNumber = $rows['studentNumber'];
+    $resume = $rows['resume'];
     $stat = $rows['stat'];
     $campus = $rows['campus'];
     $env = $rows['workEnvironment'];
@@ -100,7 +101,7 @@
         </nav>
     </div>
 
-    <div class="basic-inner-box" style="background-image:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(../img/profbg.png); color: white" >
+    <div class="basic-inner-box" style="background-image:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.1)),url(../img/profbg.png); color: white" >
         
         <div class="edit-button">
             <a class="btn btn-info" href="employeeMessages.php">MESSAGES</a>
@@ -143,7 +144,7 @@
             
                                 $img_upload = mysqli_fetch_assoc($res);
                                     ?><div class="album">
-                                            <img src= "../uploads/<?=$img_upload['img']?>">
+                                            <!--<img src= "../uploads/<?=$img_upload['img']?>">-->
                                     </div>
                                 <?php
                             }
@@ -183,14 +184,36 @@
             </div>
         
             <div class="side-picture-info">
-                <h1>Name: <?php echo $lastName ?>, <?php echo $firstName ?></h1>
+                <h1 class="text-uppercase">Name: <?php echo $lastName ?>, <?php echo $firstName ?></h1>
                 <h3><?php
                     if ($course == "BSIT"){
                         echo "Bachelor of Science in Information Technology";
                     }
                     if ($course == "BSCS"){
                         echo "Bachelor of Science in Computer Science";
-                    }                 
+                    } 
+                    if ($course == "BSBM"){
+                        echo "Bachelor of Science in Business Management";
+                    }    
+                    if ($course == "BSHM"){
+                        echo "Bachelor of Science in Hospitality Management";
+                    }   
+                    if ($course == "BSOA"){
+                        echo "Bachelor of Science in Office Administration";
+                    }        
+                    if ($course == "BSEd"){
+                        echo "Bachelor of Science in Office Administration";
+                    }       
+                    if ($course == "BS Psych"){
+                        echo "Bachelor of Science in Psychology";
+                    }    
+                    if ($course == "AB Journ"){
+                        echo "Bachelor of Arts in Journalism";
+                    }        
+                    if ($course == "BS Entrep"){
+                        echo "Bachelor of Science in Entrepreneurship";
+                    }        
+                                    
                     ?></h3>
                 <h4><?php echo $email ?> | <?php echo $studentNumber ?> | <?php echo $stat ?></h4>
                 
@@ -207,7 +230,7 @@
 
             <h1>Education:</h1>
             <div class="move-right">
-                <h3><?php echo $campus ?></h3>
+                <h3 class="text-uppercase"><?php echo $campus ?></h3>
                 <h3><?php echo $course ?></h3>
             </div>
             
@@ -216,9 +239,9 @@
             <h1>Additional Info:</h1>
 
             <div class="move-right">
-                <h3>Address: <?php echo $address ?></h3>
-                <h3>Contact No.: <?php echo $contactNumber ?></h3>
-                <h3>Preferred work evironment:
+                <h3 class="text-uppercase">Address: <?php echo $address ?></h3>
+                <h3 class="text-uppercase">Contact No.: <?php echo $contactNumber ?></h3>
+                <h3 class="text-uppercase">Preferred work evironment:
                     <?php
                     if ($env == "wfh"){
                         echo "Work From Home";
@@ -235,11 +258,11 @@
                 </div>
 
                 
-                <h3 for="">Resume:</h3>
+                <h3 for="">RESUME UPLOAD: <?php echo $resume; ?></h3>
                 <form action="resumeUpload.php" method="post" enctype="multipart/form-data">
                     <div style="">
-                        <input type="file" name="resume" class="form-control" style="width:6.7%;margin-right:5px">
-                        <input type="submit" value="Upload" name="submit" class="form-control" style="width:6.7%;">
+                        <input type="file" name="resume" style="display:inline" class="btn btn-success">
+                        <input type="submit" value="Upload" name="submit" class="btn btn-warning">
                     </div>
                 </form>
             </div>

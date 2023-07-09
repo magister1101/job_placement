@@ -102,7 +102,7 @@
             
 
         <?php
-            $JobQuery = "SELECT * FROM `job`";
+            $JobQuery = "SELECT * FROM `job` ORDER BY `id` desc";
             $jobResult = mysqli_query($conn, $JobQuery);    
 
             
