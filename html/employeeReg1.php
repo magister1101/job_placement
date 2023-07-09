@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/modal.css">
     <link rel="stylesheet" href="../css/navbar.css">
     <script src="floatwin.js"></script>
-    <title>Document</title>
+    <title>Job Placement</title>
 </head>
 <body>
 

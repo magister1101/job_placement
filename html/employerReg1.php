@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/navbar.css">
     
 
-    <title>Document</title>
+    <title>Job Placement</title>
 </head>
 <body>
 

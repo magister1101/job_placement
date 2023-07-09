@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="../css/profile.css">
     <link rel="stylesheet" href="../css/jobPosting.css">
 
-    <title>Profile</title>
+    <title>Job Placement</title>
 
 </head>
 <body>

@@ -33,7 +33,7 @@
     $Insquery = "INSERT INTO `application`(`employeeId`, `employerId`, `resume`, `nameOfApplicant`, `emailOfApplicant`, `dateOfApplication`, `jobName`) VALUES ('$applicantId','$employerId','$resume','$fullName','$applicantEmail','$dateOfApplication','$jobName')";
     $ApplicationQuery = mysqli_query($conn, $Insquery);
 
-    echo $applicantId.$employerId.$resume.$fullName.$applicantEmail.$dateOfApplication.$jobName;
+    header('location:index.php');
 
     
 

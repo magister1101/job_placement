@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/side-navbar.css">
     <link rel="stylesheet" href="../css/profile.css">
-    <title>Profile</title>
+    <title>Job Placement</title>
 
 </head>
 <body>

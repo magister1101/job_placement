@@ -1,7 +1,10 @@
 <?php
-    error_reporting(0);
     session_start();
     include 'config.php';
+
+    if(!isset($_SESSION['email'])){
+        header('location:index.php');
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,10 +13,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/reg1.css">
-    <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/new-basic.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/side-navbar.css">
+    <link rel="stylesheet" href="../css/profile.css">
     <link rel="stylesheet" href="../css/indexPage.css">
+    
     <title>Job Placement</title>
 </head>
 <body>
@@ -73,12 +78,67 @@
         </nav>
     </div>
 
+    <div class="side-navbar">
+        <ul>
+            <li><a href="employerProfile.php">Profile</a></li>
+            <li><a class="active" href="jobPosting.php">Job Posting</a></li>
+            <li><a href="applicants.php">Applicants</a></li>
+            <li><a href="messages.php">Messages</a></li>
+        </ul>
+    </div>
+
     
     
-    <div class="basic-inner-box main" >
+    <?php
+        $id = $_SESSION['id'];
+        $AppQuery = "SELECT * FROM `application` WHERE `employerId` = '$id'";
+        $AppResult = mysqli_query($conn, $AppQuery);    
+    
+    ?>
 
-
-
+    <div class="basic-inner-box jobs">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="card-mt-5">
+                        <div class="card-header">
+                            <h2 class="display-6 text-center">JOB POSTED</h2>
+                        </div>
+                         <div class="card-body">
+                            <table class="table table-bordered text-center">
+                                <tr>
+                                    <td class="text-white bg-dark">Applicant Name</td>
+                                    <td class="text-white bg-dark">Email</td>
+                                    <td class="text-white bg-dark">Date of Application</td>
+                                    <td class="text-white bg-dark">Job Applied for</td>
+                                    <td class="text-white bg-dark">Resume</td>
+                                    
+                                <tr>
+                                    <?php
+                                        while($appRow = mysqli_fetch_assoc($AppResult)){
+                                    ?>
+                                            <?php
+                                            
+                                                    
+                                                    
+                                            ?>
+                                                        <td class="text-uppercase"><?php echo $appRow['nameOfApplicant']?></td>
+                                                        <td><?php echo $appRow['emailOfApplicant']?></td>
+                                                        <td><?php echo $appRow['dateOfApplication']?></td>
+                                                        <td class="text-uppercase"><?php echo $appRow['jobName']?></td>
+                                                            
+                                </tr>
+                                    <?php
+                                                
+                                        }
+                                    ?>
+                                
+                            </table>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     
