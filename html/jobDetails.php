@@ -76,76 +76,73 @@
     <div class="underPic">
         <h1 class="text-center">CvSU Job Seekers</h1> 
     </div>
+
+    <?php
+
+        $jobClick = $_GET['jobClick'];
+
     
-    
-    <div class="basic-inner-box main" >
-        <?php
-            $filter = $_GET['filter'];
-
-        ?>
-        
-        <h1 class="text-center job-offers">Job Offers</h1> 
-        
-            <div class="filters">
-                <div class="filter-word" style="float:left;">
-                <h2 class="filter-word">Filter:</h2>
-                </div>
-                <a href="index.php?filter=Sales" name="filter" value="Sales" class="btn btn-info">Sales</a>
-                <a href="index.php?filter=Technician" name="filter" value="Technician" class="btn btn-info">Technician</a>
-                <a href="index.php?filter=Customer-Service" name="filter" value="Customer-Service" class="btn btn-info">Customer-Service</a>
-                <a href="index.php?filter=Management" name="filter" value="Management" class="btn btn-info">Management</a>
-                <a href="index.php?filter=Industries" name="filter" value="Industries" class="btn btn-info">Industries</a>
-                <a href="index.php?filter=" name="filter" value="" class="btn btn-secondary">Clear</a>
-            </div>
-            <br>
-
-            
-
-        <?php
-            $JobQuery = "SELECT * FROM `job`";
-            $jobResult = mysqli_query($conn, $JobQuery);    
-
-            
-
-            while($jobRow = mysqli_fetch_assoc($jobResult)){
-
-                if($filter == $jobRow['category']){
-        ?>
-                        <a name="jobClick" href="jobDetails.php?jobClick=<?php echo $jobRow['id']?>" style="text-decoration: none;">
-                            <div class="job-panel">
-                                <h1><?php echo $jobRow['JobName']?></h1>
-                                <h2><u>Salary:</u> <i class="text-uppercase"><?php echo $jobRow['salary']?></i></h2>
-                                <h3><u>Category:</u> <i class="text-uppercase"><?php echo $jobRow['category']?></i></h3>
-                                <hr>
-                                <h4><u>Job Description:</u> 
-                                <br>
-                                <br>
-                                <?php echo $jobRow['JobDescription']?></h4>
-                            </div>
-                        </a>
-            <?php
-                }
-                else if($filter == ""){
-                    ?>
-                        <a name="jobClick" href="jobDetails.php?jobClick=<?php echo $jobRow['id']?>" style="text-decoration: none;">
-                            <div class="job-panel">
-                                <h1><?php echo $jobRow['JobName']?></h1>
-                                <h2><u>Salary:</u> <i class="text-uppercase"><?php echo $jobRow['salary']?></i></h2>
-                                <h3><u>Category:</u> <i class="text-uppercase"><?php echo $jobRow['category']?></i></h3>
-                                <hr>
-                                <h4><u>Job Description:</u> 
-                                <br>
-                                <br>
-                                <?php echo $jobRow['JobDescription']?></h4>
-                            </div>
-                        </a>
+        $JobQuery = "SELECT * FROM `job` WHERE id = '$jobClick'";
+        $jobResult = mysqli_query($conn, $JobQuery); 
+        $jobRow = mysqli_fetch_assoc($jobResult);
                     
+        $employerId = $jobRow['employerId'];
+
+        $employerQuery = "SELECT * FROM `employer` WHERE id = '$employerId'";
+        $employerResult = mysqli_query($conn, $employerQuery); 
+        $employerRow = mysqli_fetch_assoc($employerResult);
+
+        $businessName = $employerRow['businessName'];
+    
+    ?>
+    
+    
+    <div class="basic-inner-box" >
+
+        <a href="index.php" type="button" class="btn btn-warning back-btn">Back</a>
+            <div class="row">
+                <div class="col-sm first-col">
+                    <h1 class="text-uppercase"><?php echo $businessName ?></h1>
+                    <h2 class="text-uppercase">Job: <?php echo $jobRow['JobName']?></h2>
+                    <h3 class="text-uppercase">category: <a style="text-decoration:none; color: #1d1d1d"href="index.php?filter=<?php echo $jobRow['category']?>"><?php echo $jobRow['category']?></a></h3>
+                    <h3 class="text-uppercase">CONTACT PERSON: <?php echo $employerRow['contactPersonName']?></h3>
+                    <h3>EMAIL: <?php echo $employerRow['email']?> </h3>
+                    <h3>SALARY: <?php echo $jobRow['salary']?></h3>
+                    <br>
+                    <h3 class="text-uppercase">JOB DESCRIPTION:</h3>
+                    <p><?php echo $jobRow['JobDescription']?></p>
+
+                </div>
+                <div class="col-sm second-col">
+                    <h1></h1>
+                </div>
+            </div>
+            <?php
+                if(isset($_SESSION['email'])){
+            ?>
+                    <div class="apply-div">
+                        <form action="apply.php" method="POST">
+                            <input type="text" name="jobId" style="display:none"  value="<?php echo $jobClick ?>" >
+                            <input type="text" name="employerId" style="display:none" value="<?php echo $employerId ?>">
+                            <input type="submit" class="btn btn-info apply-btn" value="SEND APPLICATION">
+                        </form>
+                    </div>
+                        
+                    <?php
+                } 
+                else {
+                    ?>
+
+                    <div class="apply-div">
+                        <a href="employeeLoginPage.php" type="button" class="btn btn-info apply-btn">SEND APPLICATION</a>
+                    </div>
 
                     <?php
 
                 }
-            }
-            ?>
+                ?>
+                
+    
     </div>
 
     

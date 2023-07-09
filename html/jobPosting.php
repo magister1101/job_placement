@@ -6,13 +6,17 @@
     
     $id = $_SESSION['id'];
 
+    $userEmail = $_SESSION['email'];
+    $resultEmployer = mysqli_query($conn, "SELECT * FROM `employer` WHERE `email` = '$userEmail'");
+    $rowsEmployer = mysqli_fetch_assoc($resultEmployer);
+    $employerId = $rowsEmployer['id'];
+
     $result = mysqli_query($conn, "SELECT * FROM `employer` WHERE `id` = '$id'");
     $rows = mysqli_fetch_assoc($result);
 
     $businessName = $rows['businessName'];
     $contactPersonName = $rows['contactPersonName'];
     $businessEmail = $rows['email'];
-
 ?>
 
 <!DOCTYPE html>
@@ -104,7 +108,7 @@
 
         <div class="information">
 
-        <form action="jobPosting.php" method="post">
+        <form action="postJob.php" method="post">
 
             <label for="name">Job Name:</label>
             <input type="text" name="jobName" class="form-control" placeholder="Enter job name" style="margin-bottom: 2%; width: 50%;" required>
@@ -136,9 +140,54 @@
         </div>
         
     </div>
+    <?php
+        $JobQuery = "SELECT * FROM `job`";
+        $jobResult = mysqli_query($conn, $JobQuery);    
+    
+    ?>
 
     <div class="basic-inner-box jobs">
-        <h1>JOBS</h1>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="card-mt-5">
+                        <div class="card-header">
+                            <h2 class="display-6 text-center">JOB POSTED</h2>
+                        </div>
+                         <div class="card-body">
+                            <table class="table table-bordered text-center">
+                                <tr>
+                                    <td class="text-white bg-dark">Job Name</td>
+                                    <td class="text-white bg-dark">Salary</td>
+                                    <td class="text-white bg-dark">Category</td>
+                                    <td class="text-white bg-dark">Description</td>
+                                    
+                                <tr>
+                                    <?php
+                                        while($jobRow = mysqli_fetch_assoc($jobResult)){
+                                    ?>
+                                            <?php
+                                                if($employerId == $jobRow['employerId']){
+                                                    
+                                                    
+                                            ?>
+                                                        <td><?php echo $jobRow['JobName']?></td>
+                                                        <td><?php echo $jobRow['salary']?></td>
+                                                        <td><?php echo $jobRow['category']?></td>
+                                                        <td><?php echo $jobRow['JobDescription']?></td>
+                                                            
+                                </tr>
+                                    <?php
+                                                }
+                                        }
+                                    ?>
+                                
+                            </table>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 
