@@ -169,7 +169,7 @@
                 if($imageChecker != ""){
                 ?>
 
-                    <img src="../uploads/<?=$img_upload1['img']?>"  alt="">
+                    <img src="../uploads/<?=$img_upload1['img']?>"  alt="" style="width:190px; height:190px">
 
                 <?php
                 }

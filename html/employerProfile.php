@@ -100,9 +100,9 @@
 
     <div class="basic-inner-box" style="background-image:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(../img/profbgemployer.jpg); color: white" >
         
-        <div class="edit-button">
+        <!--<div class="edit-button">
             <button type="button" class="btn btn-warning">EDIT</button>
-        </div>
+        </div>-->
     
     
         <div class="information">
@@ -165,7 +165,7 @@
                 if($imageChecker != ""){
                 ?>
 
-                    <img src="../uploads/<?=$img_upload1['img']?>"  alt="">
+                    <img src="../uploads/<?=$img_upload1['img']?>"  style="width:190px; height:190px" alt="">
                     <form action="#" method="post" enctype="multipart/form-data">
                         <div style="">
                             <input type="file" name="img" class="btn btn-success" style="width:56%" > <br>
@@ -179,7 +179,7 @@
                 }
                 else{
                 ?>
-                    <img src="../img/default_image.jpg" alt="">
+                    <img src="../img/default_image.jpg" alt="" style="width:180px; height:180px">
                     <form action="#" method="post" enctype="multipart/form-data">
                         <div style="">
                             <input type="file" name="img" class="btn btn-success" style="width:56%" > <br>

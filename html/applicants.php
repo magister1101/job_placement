@@ -87,12 +87,19 @@
         </ul>
     </div>
 
+
     
     
     <?php
         $id = $_SESSION['id'];
         $AppQuery = "SELECT * FROM `application` WHERE `employerId` = '$id' ORDER BY `id` desc";
         $AppResult = mysqli_query($conn, $AppQuery);    
+
+
+        
+
+
+        
     
     ?>
 
@@ -122,6 +129,32 @@
                                                         <td><?php echo $appRow['emailOfApplicant']?></td>
                                                         <td><?php echo $appRow['dateOfApplication']?></td>
                                                         <td class="text-uppercase"><?php echo $appRow['jobName']?></td>
+                                                        
+
+                                                        <?php 
+                                                        
+                                                        $employeeId = $appRow['employeeId'];
+                                                        
+                                                        $employeeResQue = "SELECT * FROM `employee` WHERE `id` = '$employeeId'";
+                                                        $employeeResResult = mysqli_query($conn, $employeeResQue); 
+                                                        $employeeRow = mysqli_fetch_assoc($employeeResResult);
+
+                                                       
+                                                        ?>
+                                                        
+
+                                                        <form action="resumeDownload.php" method="post">
+                                                            
+                                                        <?php 
+                                                            
+                                                            $resname = $employeeRow['resume'];?>
+                                                            <td>
+                                                                
+                                                                <input type="text" name="employeeId" value="<?php echo $employeeId ?>" style="display:none">
+                                                                <?php echo $employeeRow['resume'];?> 
+                                                                <input style="font-size:100%"class="btn btn-info" type="submit" name="download" value="download"/>   
+                                                            </td>
+                                                        </form>
                                                             
                                 </tr>
                                     <?php
@@ -139,7 +172,6 @@
 
     
     
-
 
 
     <footer style="background-color: #044434;">

@@ -105,6 +105,7 @@
                             <table class="table table-bordered text-center">
                                 <tr>
                                     <td class="text-light bg-success text-uppercase" style="width:10%">Date Recieved</td>
+                                    <td class="text-light bg-success text-uppercase">Business Name</td>
                                     <td class="text-light bg-success text-uppercase">Sender Email</td> <!--employer email-->
                                     <td class="text-light bg-success text-uppercase">Content</td>
                                 </tr>
@@ -126,6 +127,7 @@
                                                     
                                             ?>
                                         <td><?php echo $cqRow['dateCreated']?></td>
+                                        <td><?php echo $idToEmailRows['businessName']?></td>
                                         <td><?php echo $idToEmailRows['email']?></td>
                                         <td><?php echo $cqRow['content']?></td>
                                             
