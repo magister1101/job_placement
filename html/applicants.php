@@ -149,10 +149,23 @@
                                                             
                                                             $resname = $employeeRow['resume'];?>
                                                             <td>
-                                                                
+                                                                <?php
+                                                                    if($resname != null){
+                                                                ?>
                                                                 <input type="text" name="employeeId" value="<?php echo $employeeId ?>" style="display:none">
                                                                 <?php echo $employeeRow['resume'];?> 
                                                                 <input style="font-size:100%"class="btn btn-info" type="submit" name="download" value="download"/>   
+
+                                                                <?php
+                                                                }
+                                                                else {
+                                                                ?>
+                                                                NO RESUME
+
+                                                                <?php
+                                                                }
+                                                                
+                                                                ?>
                                                             </td>
                                                         </form>
                                                             

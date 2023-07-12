@@ -48,7 +48,9 @@
         }
         else{ //inserts email and password to database
             $ins = mysqli_query($conn, "INSERT INTO `employer`(`contactPersonName`, `businessName`, `email`, `password`, `accountType`) VALUES ('$inputContactPersonName','$inputBusinessName','$inputEmail','$inputPassword','employer')");
-            header("Location:employerLoginPage.php");
+            
+            echo"<script>alert('Register Success.')</script>";
+            echo"<script>location.href='employerLoginPage.php'</script>";
 
         }
     }

@@ -6,22 +6,16 @@
     
     $id = $_SESSION['id'];
 
-    $result = mysqli_query($conn, "SELECT * FROM `employee` WHERE `id` = '$id'");
-    $rows = mysqli_fetch_assoc($result);
-    
+    $businessNameGet = $_GET['businessName'];
 
-    $resume = $rows['resume'];
-    $firstName = $rows['firstName'];
-    $lastName = $rows['lastName'];
-    $course = $rows['course'];
-    $email = $rows['email'];
-    $studentNumber = $rows['studentNumber'];
-    $resume = $rows['resume'];
-    $stat = $rows['stat'];
-    $campus = $rows['campus'];
-    $env = $rows['workEnvironment'];
-    $address = $rows['address'];
-    $contactNumber = $rows['contactNumber'];
+    $result = mysqli_query($conn, "SELECT * FROM `employer` WHERE `businessName` = '$businessNameGet'");
+    $rows = mysqli_fetch_assoc($result);
+
+    $businessName = $rows['businessName'];
+    $contactPersonName = $rows['contactPersonName'];
+    $businessEmail = $rows['email'];
+    $employerId = $rows['id'];
+
 ?>
 
 <!DOCTYPE html>
@@ -34,13 +28,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/new-basic.css">
     <link rel="stylesheet" href="../css/navbar.css">
-
     <link rel="stylesheet" href="../css/profile.css">
     <title>Job Placement</title>
-
-    
-
-    
 
 </head>
 <body>
@@ -101,16 +90,18 @@
         </nav>
     </div>
 
-    <div class="basic-inner-box" style="background-image:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.1)),url(../img/profbg.png); color: white" >
+    
+    
+
+    <div class="basic-inner-box" style="background-image:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(../img/profbgemployer.jpg); color: white" >
         
-        <div class="edit-button">
-            <a class="btn btn-info" href="employeeMessages.php">MESSAGES</a>
-        </div>
+        <!--<div class="edit-button">
+            <button type="button" class="btn btn-warning">EDIT</button>
+        </div>-->
     
     
         <div class="information">
-
-        <?php
+            <?php
                     
                     if(isset($_POST['submit']) && isset($_FILES['img'])){
 
@@ -130,16 +121,16 @@
                                 move_uploaded_file($tmp_name, $img_up_path);
             
                                 $seshId = $_SESSION['id'];
-                                $ins = "UPDATE `employee` SET `img`='$new_img_name' WHERE `id` = '$seshId'";
+                                $ins = "UPDATE `employer` SET `img`='$new_img_name' WHERE `id` = '$seshId'";
                                 mysqli_query($conn, $ins);
             
-                                $sid = "SELECT * from employee WHERE img = '$new_img_name'";
+                                $sid = "SELECT * from employer WHERE img = '$new_img_name'";
                                 $sidd = mysqli_query($conn, $sid);
                                 $rows = mysqli_fetch_assoc($sidd);
             
                                 $id = $rows["id"];
             
-                                $imgsearch = "SELECT * FROM employee WHERE id = '$id'";
+                                $imgsearch = "SELECT * FROM employer WHERE id = '$id'";
                                 $res = mysqli_query($conn, $imgsearch);
             
                                 $img_upload = mysqli_fetch_assoc($res);
@@ -161,7 +152,7 @@
             <div class="profile-picture" style="float:left;">
 
             <?php
-                $imgsearch1 = "SELECT * FROM employee WHERE id = '$id'";
+                $imgsearch1 = "SELECT * FROM employer WHERE id = '$id'";
                 $res1 = mysqli_query($conn, $imgsearch1);
                 $img_upload1 = mysqli_fetch_assoc($res1);
 
@@ -169,13 +160,22 @@
                 if($imageChecker != ""){
                 ?>
 
-                    <img src="../uploads/<?=$img_upload1['img']?>"  alt="" style="width:190px; height:190px">
+                    <img src="../uploads/<?=$img_upload1['img']?>"  style="width:190px; height:190px" alt="">
+                    <form action="#" method="post" enctype="multipart/form-data">
+                        <div style="">
+                            <input type="file" name="img" class="btn btn-success" style="width:56%" > <br>
+                            <input type="submit" value="Upload" name="submit" class="btn btn-success" style="width:56%">
+                        </div>
+                    </form>
+                    
+                    
 
                 <?php
                 }
                 else{
                 ?>
-                    <img src="../img/default_image.jpg" alt="">
+                    <img src="../img/default_image.jpg" alt="" style="width:180px; height:180px">
+                    
                 <?php
                 }
                 ?>
@@ -184,54 +184,13 @@
             </div>
         
             <div class="side-picture-info">
-                <h1 class="text-uppercase">Name: <?php echo $lastName ?>, <?php echo $firstName ?></h1>
-                <h3><?php
-                    if ($course == "BSIT"){
-                        echo "Bachelor of Science in Information Technology";
-                    }
-                    if ($course == "BSCS"){
-                        echo "Bachelor of Science in Computer Science";
-                    } 
-                    if ($course == "BSBM"){
-                        echo "Bachelor of Science in Business Management";
-                    }    
-                    if ($course == "BSHM"){
-                        echo "Bachelor of Science in Hospitality Management";
-                    }   
-                    if ($course == "BSOA"){
-                        echo "Bachelor of Science in Office Administration";
-                    }        
-                    if ($course == "BSEd"){
-                        echo "Bachelor of Science in Office Administration";
-                    }       
-                    if ($course == "BS Psych"){
-                        echo "Bachelor of Science in Psychology";
-                    }    
-                    if ($course == "AB Journ"){
-                        echo "Bachelor of Arts in Journalism";
-                    }        
-                    if ($course == "BS Entrep"){
-                        echo "Bachelor of Science in Entrepreneurship";
-                    }        
-                                    
-                    ?></h3>
-                <h4><?php echo $email ?> | <?php echo $studentNumber ?> | <?php echo $stat ?></h4>
-                
-                <form action="#" method="post" enctype="multipart/form-data">
-                    <div style="">
-                        <input type="file" name="img" class="form-control" style="width:6.7%; float:left;margin-right:5px">
-                        <input type="submit" value="Upload" name="submit" class="form-control" style="width:7%;">
-                    </div>
-                </form>
-                
-            </div>
+                <h1 class="text-uppercase">Business Name: <?php echo $businessName ?></h1>
             
             <hr>
 
-            <h1>Education:</h1>
+            <h1>Contact Person:</h1>
             <div class="move-right">
-                <h3 class="text-uppercase"><?php echo $campus ?></h3>
-                <h3><?php echo $course ?></h3>
+                <h3 class="text-uppercase"><?php echo $contactPersonName ?></h3>
             </div>
             
             <hr>
@@ -239,42 +198,92 @@
             <h1>Additional Info:</h1>
 
             <div class="move-right">
-                <!--<h3 class="text-uppercase">Address: <?php echo $address ?></h3>-->
-                <h3 class="text-uppercase">Contact No.: <?php echo $contactNumber ?></h3>
-                <h3 class="text-uppercase">Preferred work evironment:
-                    <?php
-                    if ($env == "wfh"){
-                        echo "Work From Home";
-                    }
-                    else {
-                        echo "On-Site";
-                    }                 
-                    ?>
-                </h3>
-                <br>
-                <div style="color:white;">
-
+                <h3>Email: <?php echo $businessEmail ?></h3>
                 
-                </div>
-
-                
-                <h3 for="">RESUME UPLOAD: <?php echo $resume; ?></h3>
-                <form action="resumeUpload.php" method="post" enctype="multipart/form-data">
-                    <div style="">
-                        <input type="file" name="resume" style="display:inline" class="btn btn-success">
-                        <input type="submit" value="Upload" name="submit" class="btn btn-warning">
-                    </div>
-                </form>
             </div>
-
-           
-
+         
         </div>
         
     </div>
-            <?php
-                echo $resname;
-            ?>
+            </div>
+
+    <div class="basic-inner-box" style="" >
+
+        <div class="information">
+
+                    <form action="sendFeedback.php" method="post">
+                        <div class="card-header">
+                            <h2 class="display-6 text-center text-dark">SEND FEEDBACK</h2>
+                        </div>
+
+                        <label for="name">Name:</label>
+                        <input type="text" name="name" id="name" class="form-control" placeholder="Enter name" style="margin-bottom: 2%; width: 50%;" required>
+
+                        <label for="content">Feedback:</label>
+                        <textarea name="content" id="" cols="30" rows="3" class="form-control" style="margin-bottom: 2%;" placeholder="Enter content"></textarea>
+
+                        <input type="text" name="businessName" id="" value="<?php echo $businessNameGet?>" style="display:none">
+
+                        <button type="submit" class="btn btn-warning">Send</button>
+
+                    </form>
+         
+        </div>
+        
+    </div>
+
+    <?php
+
+        $contentQuery = "SELECT * FROM `review` ORDER BY `id` desc";
+        $cqResult = mysqli_query($conn,$contentQuery);      
+        
+    
+    ?>
+
+    <div class="basic-inner-box jobs">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="card-mt-5">
+                        <div class="card-header">
+                            <h2 class="display-6 text-center">FEEDBACKS</h2>
+                        </div>
+                         <div class="card-body">
+                            <table class="table table-bordered text-center">
+                                <tr>
+
+                                    <td class="text-light bg-success text-uppercase" style="width:10%">Date Sent</td>
+                                    <td class="text-light bg-success text-uppercase" style="width:10%">Name</td>
+                                    <td class="text-light bg-success text-uppercase">FEEDBACK</td>
+                                </tr>
+                                
+                                    <?php
+                                        while($cqRow = mysqli_fetch_assoc($cqResult)){
+
+                                            if($employerId == $cqRow['employerId']){
+                                    ?>
+                                    
+                                    <tr>
+                                        
+                                        <td><?php echo $cqRow['dateCreated']?></td>
+                                        <td><?php echo $cqRow['name']?></td>
+                                        <td><?php echo $cqRow['content']?></td>
+                                        </tr>
+                                    <?php
+                                            }
+                                        }
+                                    ?>
+                                
+                                
+                                    
+                                
+                            </table>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <footer style="background-color: #044434;">

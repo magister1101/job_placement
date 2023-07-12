@@ -5,3 +5,14 @@
     border-radius: 25px; 
     background-color: #fbfff4;
 }
+.businessNamehover{
+
+    color:rgb(0, 37, 25);
+    transition: transform .3s;
+}
+
+.businessNamehover:hover{
+
+    color:rgb(37, 75, 2);
+    transform: scale(1.01);
+}

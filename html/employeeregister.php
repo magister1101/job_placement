@@ -102,7 +102,7 @@ $env = $_GET['env'];
                         <!--third register form-->
                         <div id="thirdReg">
                             <div style="display:flex; flex-direction: column;">
-                                <h1 style="margin-bottom: 5%;" >Are you a?</h1>
+                                <h1 style="margin-bottom: 5%;" >Are you an?</h1>
                                 <a href="employeeregister.php?email=<?php echo $email?>&university=<?php echo $university; ?>&status=Alumni" class="btn btn-success" style="margin-bottom: 2%;">Alumni</a>
                                 <a href="employeeregister.php?email=<?php echo $email?>&university=<?php echo $university; ?>&status=Undergraduate" class="btn btn-success" style="margin-bottom: 2%;">Undergraduate</a>
                             </div>
@@ -160,7 +160,10 @@ $env = $_GET['env'];
                         $conn = new mysqli('localhost','root','','accounts');
                         $update = "UPDATE employee SET campus='$university', stat='$status', course='$course', workExperience='$exp', workEnvironment='$env', accountType='employee' WHERE email='$email' ";
                         $updrun = mysqli_query($conn, $update);
-                        header("Location:employeeLoginPage.php");
+                        
+                        echo"<script>alert('Register Success');</script>";
+                        echo"<script>location.href='employeeLoginPage.php'</script>";
+
 
                     }
                     ?>

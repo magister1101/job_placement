@@ -102,7 +102,7 @@
         <a href="index.php" type="button" class="btn btn-warning back-btn">Back</a>
             <div class="row">
                 <div class="col-sm first-col">
-                    <h1 class="text-uppercase"><?php echo $businessName ?></h1>
+                    <a style="text-decoration:none; " class="businessNamehover" href="company.php?businessName=<?php echo $businessName?>"><h1 class="text-uppercase"><?php echo $businessName ?></h1> </a>  
                     <h2 class="text-uppercase">Job: <?php echo $jobRow['JobName']?></h2>
                     <h3 class="text-uppercase">category: <a style="text-decoration:none; color: #1d1d1d"href="index.php?filter=<?php echo $jobRow['category']?>"><?php echo $jobRow['category']?></a></h3>
                     <h3 class="text-uppercase">CONTACT PERSON: <?php echo $employerRow['contactPersonName']?></h3>
